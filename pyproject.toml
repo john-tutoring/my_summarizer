@@ -29,6 +29,10 @@ docsum = [
     "openai>=1.40",
     "PyYAML>=6.0",
 ]
+dev = [
+    "pytest>=8",
+    "pytest-cov>=5",
+]
 
 [project.scripts]
 doc2md = "doc2md.cli:main"
@@ -36,3 +40,10 @@ docsum = "docsum.cli:main"
 
 [tool.setuptools]
 packages = ["doc2md", "doc2md.extract", "docsum"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# Coverage is reported, never gating: a threshold that fails the build
+# encourages tests written for the metric rather than for real risk.
+addopts = "-q --cov=doc2md --cov=docsum --cov-report=term-missing:skip-covered"
+filterwarnings = ["error::DeprecationWarning:doc2md.*", "error::DeprecationWarning:docsum.*"]

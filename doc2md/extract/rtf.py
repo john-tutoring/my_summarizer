@@ -82,7 +82,13 @@ def _paragraphs(raw: str) -> list[str]:
 
         if word is not None:
             if word in SKIP_GROUPS:
-                skip_until_depth = depth - 1
+                # `depth` is already inside the group (its opening brace was
+                # counted), so the group ends at the closing brace seen while
+                # depth still equals this value. Using depth - 1 here swallowed
+                # everything up to the end of the *parent* group instead —
+                # which meant a document with a \fonttbl, i.e. every real RTF
+                # file, lost all of its body text.
+                skip_until_depth = depth
                 continue
             if word in PARAGRAPH_BREAKS:
                 joined = "".join(current).strip()

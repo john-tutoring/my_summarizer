@@ -6,6 +6,10 @@ __pycache__/
 build/
 dist/
 .DS_Store
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
 
 # Generated config; each machine writes its own on first run.
 doc2md.yaml

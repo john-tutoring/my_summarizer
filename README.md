@@ -252,6 +252,31 @@ requirements-*.txt
 pyproject.toml    two extras, two console scripts
 ```
 
+## Tests
+
+```bash
+pip install -e '.[dev]'
+pytest
+```
+
+The suite is **fully mocked** — no API key, no network, no cost. Sample
+documents for every supported format are generated at test time rather than
+committed, so the repo carries no binaries and each fixture contains exactly
+the structure its tests assert on.
+
+Notable coverage:
+
+- The **anchor invariant** in both directions, per format.
+- The **isolation property** that justifies chaptered summarization: each
+  chapter request is asserted to contain its own text and no other chapter's.
+- **Independence**, checked statically and by running each tool in a
+  subprocess with the other's dependencies made unimportable.
+- `tests/test_regressions.py` carries one named test per bug found during
+  development, each documenting how it was hit.
+
+CI runs the same suite on Python 3.10, 3.11, and 3.12 for every push and pull
+request.
+
 ## Limitations
 
 - PDF reading order is a positional sort, correct for single-column layouts;
