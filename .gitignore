@@ -1,0 +1,31 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.DS_Store
+
+# Generated config; each machine writes its own on first run.
+doc2md.yaml
+docsum.yaml
+
+# Documents you convert, and anything produced from them. These are almost
+# always someone else's copyrighted material — keep them out of the repo.
+*.epub
+*.pdf
+*.docx
+*.pptx
+*.odt
+*.odp
+*.ods
+*.rtf
+*.doc
+*.ppt
+*.xls
+*.xlsx
+*.summary.md
+
+# Everything doc2md and docsum produce.
+outputs/

@@ -1,0 +1,3 @@
+# docsum — markdown summarization. Needs an OpenAI API key at runtime.
+openai>=1.40
+PyYAML>=6.0

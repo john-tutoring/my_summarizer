@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "documentsummarizer"
+version = "0.1.0"
+description = "doc2md converts documents to Markdown with anchored images; docsum summarizes Markdown chapter by chapter using the OpenAI API."
+requires-python = ">=3.10"
+
+# Nothing is shared between the two tools, so the base install has no
+# dependencies. Pick the extra for the tool you want, or both.
+dependencies = []
+
+[project.optional-dependencies]
+doc2md = [
+    "pymupdf>=1.24",
+    "python-docx>=1.1",
+    "python-pptx>=0.6.23",
+    "EbookLib>=0.18",
+    "lxml>=5.0",
+    "beautifulsoup4>=4.12",
+    "markdownify>=0.13",
+    "Pillow>=10.0",
+    "PyYAML>=6.0",
+    "markitdown[xlsx,xls,outlook]>=0.1",
+]
+docsum = [
+    "openai>=1.40",
+    "PyYAML>=6.0",
+]
+
+[project.scripts]
+doc2md = "doc2md.cli:main"
+docsum = "docsum.cli:main"
+
+[tool.setuptools]
+packages = ["doc2md", "doc2md.extract", "docsum"]

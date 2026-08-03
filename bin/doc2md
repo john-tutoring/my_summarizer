@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Run doc2md straight from the repo, no install step needed.
+set -euo pipefail
+root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+python="$root/.venv/bin/python"
+[ -x "$python" ] || python="$(command -v python3)"
+PYTHONPATH="$root${PYTHONPATH:+:$PYTHONPATH}" exec "$python" -m doc2md "$@"
